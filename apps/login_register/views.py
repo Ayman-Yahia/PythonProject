@@ -23,8 +23,9 @@ def register(request):
 def login(request):
     user_email=User.objects.filter(email=request.POST['login_email'])
     user_pass=request.POST['login_password']
-    if len(user_email)!=0 :
+    if len(user_email)>0 :
         if user_email:
+            print(user_email)
             logged_user=user_email[0]
             if bcrypt.checkpw(user_pass.encode(), logged_user.password.encode()):
                 user_m=User.objects.get(email=request.POST['login_email'])

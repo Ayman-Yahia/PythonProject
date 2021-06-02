@@ -10,19 +10,11 @@ class Cataegory(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
-        return self.title
+        return self.cataegory_title
 
 
 
-class Order(models.Model):
-    
-    #items=models.ManyToManyField(Item,related_name='orders')
-    quantity=models.IntegerField()
-    user=models.ForeignKey(User, related_name="orders",on_delete=CASCADE)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)
-def __str__(self):
-    return self.quantity
+
 
 class Item(models.Model):
 
@@ -31,15 +23,23 @@ class Item(models.Model):
     description=models.TextField()
     available_quantity=models.IntegerField()
     image=models.ImageField()
-    cataegory=models.ForeignKey(Cataegory,related_name='items',on_delete=models.CASCADE)
-    order=models.ManyToManyField(Order,related_name='items')
+    cataegories=models.ForeignKey(Cataegory,related_name='items',on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.title
 
 
-
+class Order(models.Model):
+    
+    #items=models.ManyToManyField(Item,related_name='orders')
+    quantity=models.IntegerField()
+    user=models.ForeignKey(User, related_name="orders",on_delete=CASCADE)
+    items_order=models.ManyToManyField(Item,related_name='orders')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.quantity
 
 
 
