@@ -8,12 +8,8 @@ class UserManager(models.Manager):
         print(postData)
         if len(postData['first_name']) < 2:
             errors['first_name'] = "First Name needs to be at least 2 characters"
-        if postData['first_name'].isalpha() !=True:
-            errors['first_name'] = "First Name must be only charactries"
         if len(postData['last_name']) < 2:
             errors['last_name'] = "Last Name needs to be at least 2 characters"
-        if postData['last_name'].isalpha() !=True:
-            errors['last_name'] = "Last Name must be only charactries"
         if len(postData['password']) <8:
             errors['password'] = "The Passwords should be at least 8 char"
         if (postData['password']) !=(postData['confirm_password']):

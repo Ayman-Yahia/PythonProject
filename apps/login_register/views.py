@@ -14,7 +14,7 @@ def register(request):
     else:
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-        userNew=User.objects.create(first_name=request.POST['first_name'],last_name=request.POST['last_name'],email=request.POST['email'],birthday=request.POST['birthday'],password=pw_hash)
+        userNew=User.objects.create(first_name=request.POST['first_name'],last_name=request.POST['last_name'],email=request.POST['email'],password=pw_hash)
         request.session['first_name']=request.POST['first_name']
         request.session['last_name']=request.POST['last_name']
         request.session['user_id']=userNew.id

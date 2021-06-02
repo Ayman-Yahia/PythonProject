@@ -14,14 +14,7 @@
     <div class="container">
         <div class="forms-container">
           <div class="signin-signup">
-            {% if messages %}
-            <ul class="messages mt-4">
-                {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <form action="register" class="sign-in-form" id="form_register"method="POST">
+            <form action="login" class="sign-in-form" id="form_register"method="POST">
               {% csrf_token %}
               <h2 class="title">Sign in</h2>
               <div class="input-field">
@@ -49,11 +42,18 @@
                 </a>
               </div>
             </form>
-            <form action="login" class="sign-up-form" method="POST">
+            <form action="register" class="sign-up-form" method="POST">
               {% csrf_token %}
               <h2 class="title">Sign up</h2>
               <div class="input-field">
                 <i class="fas fa-user"></i>
+                {% if messages %}
+              <ul class="messages mt-4">
+                  {% for message in messages %}
+                  <li {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+              {% endif %}
                 <input type="text" id="first_name" required name="first_name" placeholder="First Name" />
               </div>
               <div class="input-field">
@@ -62,15 +62,15 @@
               </div>
               <div class="input-field">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="email" required placeholder="Email" />
+                <input type="email" id="email" name="email" required placeholder="Email" />
               </div>
               <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input type="password" id="password" required placeholder="Password" />
+                <input type="password" id="password" name="password" required placeholder="Password" />
               </div>
               <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input type="password" id="confirm_password" required name="confirm_password" placeholder="Confirm Password" />
+                <input type="password" id="confirm_password" name="confirm_password" required name="confirm_password" placeholder="Confirm Password" />
               </div>
               <input type="submit" class="btn" value="Sign up" />
               <p class="social-text">Or Sign up with social platforms</p>
