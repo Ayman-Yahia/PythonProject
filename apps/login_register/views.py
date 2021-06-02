@@ -10,7 +10,7 @@ def register(request):
     if len(errors) > 0 :
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('http://127.0.0.1:8000/welcome/register')
+        return redirect('http://127.0.0.1:8000/register_login')
     else:
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
@@ -35,4 +35,4 @@ def login(request):
                 return redirect('http://127.0.0.1:8000/store')
             else:return HttpResponse('The password you provided is Invalid')
     else:
-        return redirect('http://127.0.0.1:8000/welcome')
+        return redirect('http://127.0.0.1:8000/register_login')
