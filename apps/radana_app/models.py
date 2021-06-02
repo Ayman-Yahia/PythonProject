@@ -1,6 +1,53 @@
 from django.db import models
+from django.db.models.base import Model
+from django.db.models.deletion import CASCADE
 from ..login_register.models import User
+from decimal import Decimal
 # Create your models here.
+
+class Cataegory(models.Model):
+    cataegory_title=models.CharField(max_length=100)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.title
+
+
+
+class Order(models.Model):
+    
+    #items=models.ManyToManyField(Item,related_name='orders')
+    quantity=models.IntegerField()
+    user=models.ForeignKey(User, related_name="orders",on_delete=CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+def __str__(self):
+    return self.quantity
+
+class Item(models.Model):
+
+    title=models.CharField(max_length=100)
+    price=models.FloatField()
+    description=models.TextField()
+    available_quantity=models.IntegerField()
+    image=models.ImageField()
+    cataegory=models.ForeignKey(Cataegory,related_name='items',on_delete=models.CASCADE)
+    order=models.ManyToManyField(Order,related_name='items')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+def __str__(self):
+    return self.title
+
+
+
+
+
+
+
+
+
+
+
 # class Order(models.Model):
 #     quantity=models.IntegerField(max_length=9)
 #     created_at=models.DateTimeField(auto_now_add=True)

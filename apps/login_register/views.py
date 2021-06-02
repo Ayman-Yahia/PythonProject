@@ -10,7 +10,7 @@ def register(request):
     if len(errors) > 0 :
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('http://127.0.0.1:8000/register_login')
+        return redirect('http://127.0.0.1:8000/welcome')
     else:
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
@@ -19,7 +19,7 @@ def register(request):
         request.session['last_name']=request.POST['last_name']
         request.session['user_id']=userNew.id
         request.session['event']="Registered "
-        return redirect ('http://127.0.0.1:8000/store')
+        return redirect ('http://127.0.0.1:8000/home')
 def login(request):
     user_email=User.objects.filter(email=request.POST['login_email'])
     user_pass=request.POST['login_password']
@@ -32,7 +32,7 @@ def login(request):
                 request.session['last_name']=user_m.last_name
                 request.session['user_id']=user_m.id
                 request.session['event']="Logged In"
-                return redirect('http://127.0.0.1:8000/store')
+                return redirect('http://127.0.0.1:8000/home')
             else:return HttpResponse('The password you provided is Invalid')
     else:
-        return redirect('http://127.0.0.1:8000/register_login')
+        return redirect('http://127.0.0.1:8000/welcome')
