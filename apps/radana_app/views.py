@@ -8,8 +8,8 @@ from ..login_register.models import User
 def index(request):       
         context={
             "item1":Item.objects.get(id=1),
-            # "item2":Item.objects.get(id=2),
-            # "item3":Item.objects.get(id=3),
+            "item2":Item.objects.get(id=2),
+            "item3":Item.objects.get(id=3),
         }
         return render(request,'store.html',context)
 def item_detailes(request,item_id):
@@ -22,9 +22,19 @@ def items(request):
         'items':Item.objects.all()
     }
     return render (request,'shop.html',context)
-# def checkout(request):
-#     return render(request,'')
+def add_to_cart(request,item_id):
+    current_user=User.objects.get(id=request.session['user_id'])
+    added_item=Item.objects.get(id=item_id)
+    Cart.user.add(current_user)
+    Cart.items.add(added_item)   
+    return redirect('/items')
+def checkout(request):
+    user=User.objects.get(id=request.session['user_id'])
+    context={
+        'order':Cart.items
+    }
+    return render(request,'checkout.html',context)
 def logout(request):
     request.session.clear()
-    return redirect ('http://127.0.0.1:8000/home/')
+    return redirect ('/welcome')
 

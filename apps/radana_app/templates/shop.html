@@ -24,15 +24,15 @@
                     <i class="fa fa-bars"></i>
                     <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <a href="http://127.0.0.1:8000/home/" class="navbar-brand brand"> RADANA </a>
+                    <a href="/" class="navbar-brand brand"> RADANA </a>
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <!-- <li class="propClone"><a href="index.html">Home</a></li> -->
-                        <li class="propClone"><a href="http://127.0.0.1:8000/home/items">Shop</a></li>
+                        <li class="propClone"><a href="/items">Shop</a></li>
                         <!-- <li class="propClone"><a href="product.html">Product</a></li> -->
                         {% if request.session.user_id %}
-                        <li class="propClone"><a href="http://127.0.0.1:8000/home/checkout">Checkout</a></li>
+                        <li class="propClone"><a href="/checkout">Checkout</a></li>
                         {% endif %}
                         <li class="propClone search_bar">
                             <form id=”search” method=”POST” action='ajax_calls/search/'>
@@ -42,11 +42,11 @@
                             </form>
                         </li>
                         {% if not  request.session.user_id%}
-                            <li class="propClone"><a href="http://127.0.0.1:8000/welcome">Login or signup </a></li>
+                            <li class="propClone"><a href="/welcome">Login or signup </a></li>
                             <!-- <li class="propClone"><a href="contact.html">Contact</a></li> -->
                         {% else %}
-						    <li class="propClone"><a href="http://127.0.0.1:8000/home/logout">Welcome {{request.session.name}}</a></li>
-                            <li class="propClone"><a href="http://127.0.0.1:8000/home/logout">Log Out </a></li>
+						    <li class="propClone"><a href="">Welcome {{request.session.first_name}}</a></li>
+                            <li class="propClone"><a href="/logout">Log Out </a></li>
                         {%endif %}
                     </ul>
                     <!-- <form action="#">
@@ -111,12 +111,12 @@
 							</p>
 							<p>
 								{% if request.session.user_id %}
-								    <a href="http://127.0.0.1:8000/home/cart/{{item.id}}" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+								    <a href="/cart/{{item.id}}" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
 								{% endif %}
-								<a href="http://127.0.0.1:8000/home/items/{{item.id}}" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
+								<a href="/items/{{item.id}}" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
-						<span class="maxproduct"><img src="{{item.image}}" alt="" style="width: 200px; height: 200px;"></span>
+						<span class="maxproduct"><img src="../static/images/{{item.image}}.jpg" alt="" style="width: 200px; height: 200px;"></span>
 					</div>
 					<div class="product-details">
 						<a href="#">

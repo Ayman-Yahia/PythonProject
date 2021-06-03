@@ -19,7 +19,7 @@ class Item(models.Model):
     price=models.FloatField()
     description=models.TextField()
     available_quantity=models.IntegerField()
-    image=models.TextField(null=True)
+    image=models.CharField(max_length=255)
     categories=models.ForeignKey(Cataegory,related_name='items',on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -29,6 +29,7 @@ class Order(models.Model):
     #items=models.ManyToManyField(Item,related_name='orders')
     quantity=models.IntegerField()
     user=models.ForeignKey(User, related_name="orders",on_delete=CASCADE)
+    total_price=models.FloatField()
     items_order=models.ManyToManyField(Item,related_name='orders')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -39,3 +40,4 @@ class Cart(models.Model):
     items=models.ForeignKey(Item,related_name='items',on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+# def add_to_cart(user,item):
