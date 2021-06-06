@@ -32,10 +32,10 @@
 						<!-- <li class="propClone"><a href="index.html">Home</a></li> -->
 						<li class="propClone"><a href="/items">Shop</a></li>
 						<!-- <li class="propClone"><a href="product.html">Product</a></li> -->
-						<li class="propClone"><a href="/About_us">About Us</a></li>
 						{% if request.session.user_id %}
 						<li class="propClone"><a href="/checkout">Checkout</a></li>
 						{% endif %}
+						<li class="propClone"><a href="/About_us">About Us</a></li>
 						<li class="propClone search_bar">
 							<form id=”search” method=”POST” action='/autocomplete'>
 								{% csrf_token %}
@@ -47,20 +47,11 @@
 							<li class="propClone"><a href="/welcome">Login or signup </a></li>
 							<!-- <li class="propClone"><a href="contact.html">Contact</a></li> -->
 						{% else %}
-						    <li class="propClone"><a href="">Welcome {{request.session.first_name}}</a></li>
+						    <li class="propClone"><a href="">Welcome {{request.session.name}}</a></li>
 							<li class="propClone"><a href="/logout">Log Out </a></li>
 						{%endif %}
 					</ul>
-					<!-- <form action="#">
-						<input type="text"
-							placeholder=" Search Item"
-							name="search">
-						<button>
-							<i class="fa fa-search"
-								style="font-size: 18px;">
-							</i>
-						</button>
-					</form> -->
+					
 					<script>
 						$(document).ready(function(){ 
 							$("#txtSearch").autocomplete({
@@ -99,60 +90,38 @@
 <div class="container toparea">
 	<div class="underlined-title">
 		<div class="editContent">
-			<h1 class="text-center latestitems">Awesome Product</h1>
+			<h1 class="text-center latestitems"> From Radana</h1>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-8">
-			<div class="productbox">
-				<img src="/static/images/{{item.image}}.jpg" alt="item image" style="width: 700px; height: 300px;">
+		<!-- <div class="col-md-8"> -->
+            <div class="d-inline-flex p-2">
+            <h3 class="text-center latestitems">Thank's for visiting us </h3><br><br>
+			<h4 class="text-center latestitems">Your have  purchased {{sum}} items </h4>
+			<h4 class="text-center latestitems">Purchase Total:${{cost}}  </h4>
+			<!-- <div class="productbox">
+				<img src="/static/images/00.jpg" alt="item image" style="width: 1200px; height: 500px;">
 				<div class="clearfix">
 				</div>
 				<br/>
-				<div class="product-details text-left">
-					<p>
-						{{item.description}}
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-				<!-- <a class="btn btn-buynow" href="/items/{{item.id}}/add">{{item.price}} - Add to cart</a>  -->
-			<form action="/items/{{item.id}}/quantity" method="POST">
-				{% csrf_token %}
-				{% if  request.session.user_id%}
-				<input type="submit" class="btn btn-buynow" value="{{item.price}} - Add to cart" >
-				{% endif %}
-				<div class="properties-box">
-					<ul class="unstyle">
-						<li><b class="propertyname">Name:</b> {{item.name}}</li>
-						<li><b class="propertyname">Available Quantity:</b> {{item.available_quantity}}</li>
-						<li><b class="propertyname">Category:</b> {{item.categories}}</li>
-						<li><b class="propertyname">Added on:</b> {{item.created_at}}</li>
-						{% if request.session.user_id%}
-						    <li><b class="propertyname">Quantity:</b><input value="1" type="number" name="quantity" min="1" max="{{item.available_quantity}}" style="margin-left:15px;"></li>
-					    {% endif %}
-					</ul>
-				</div>
-			</form>
-		</div>
+				
+			</div>  -->
 	</div>
 </div>
 </section>
-
-<!-- CALL TO ACTION =============================-->
 <section class="content-block" style="background-color:#00bba7;">
-<div class="container text-center">
-
-</div>
+    <div class="container text-center">
+    </div>
 </section>
+
+
 
 <!-- FOOTER =============================-->
 <div class="footer text-center">
 	<div class="container">
 		<div class="row">
 			<p class="footernote">
-				 Connect with Radana	
+				 Connect with Radana
 			</p>
 			<ul class="social-iconsfooter">
 				<li><a href="#"><i class="fa fa-phone"></i></a></li>
@@ -162,7 +131,8 @@
 				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 			</ul>
 			<p>
-				&copy; 2021 RADANA<br/>
+				 &copy; 2021 Radana Electronic Store<br/>
+				Radana <a href="/home">Home page</a>
 			</p>
 		</div>
 	</div>

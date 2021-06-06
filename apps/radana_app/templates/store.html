@@ -35,8 +35,9 @@
                         {% if request.session.user_id %}
                         <li class="propClone"><a href="/checkout">Checkout</a></li>
                         {% endif %}
+                        <li class="propClone"><a href="/About_us">About Us</a></li>
                         <li class="propClone search_bar">
-                            <form id=”search” method=”POST” action='ajax_calls/search/'>
+                            <form id=”search” method=”POST” action='/autocomplete'>
                                 {% csrf_token %}
                                 <input type=”text” class=”form-control” id=”txtSearch” name=”txtSearch”>
                                 <button type=”submit” class=”btn btn-default btn-submit”>Search</button>
@@ -112,7 +113,7 @@
                         <span class="numberstep"><i class="fa fa-gift"></i></span>
                         <h3 class="numbertext">Pay with PayPal or Card</h3>
                         <p>
-                            RADANA Has An Easy Way To Pay So From Now Don't Think a Lot Lbout Payments
+                            RADANA Has An Easy Way To Pay So From Now Don't Think a Lot about Payments
                         </p>
                     </div>
                     <!-- /.col -->
@@ -120,47 +121,46 @@
                 <!-- /.col-md-4 col -->
                 <div class="col-md-4 editContent">
                     <div class="col">
+                        <span class="numberstep"><i class="fa fa-download"></i></span>
+                        <h3 class="numbertext">Get Instant Download</h3>
+                        <p>
+                            Know our Products before the other's by Downloading Radana's App.
+                        </p>
+                    </div>
+                    <div class="col">
                         
                     
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-        
-        
-        <!-- LATEST ITEMS =============================-->
-    <section class="item content">
-        <div class="container">
-            <div class="underlined-title">
-                <div class="editContent">
-                    <h1 class="text-center latestitems">LATEST ITEMS</h1>
-                </div><br>
-            </div>
-            <div class="row">
+    </div><br>
+    <div class="item content">
+        <div class="container toparea">
+            <div class="row text-center">
                 <div class="col-md-4">
                     <div class="productbox">
                         <div class="fadeshop">
                             <div class="captionshop text-center" style="display: none;">
-                                <h3>{{item1.name}}</h3>
+                                <h3>{{item2.name}}</h3>
                                 <p>
-                                    If you are professinal in photograph surely this Drone best item in your collection
+                                    Best proformance ,32GB RAM and 16GB gtx force nivadia, and many other thing wating you 
                                 </p>
                                 <p>
                                     {% if request.session.user_id %}
-								        <a href="/cart/1" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+								        <a href="items/{{item1.id}}/add" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
 								    {% endif %}
                                     <a href="/items/1" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
                                 </p>
                             </div>
-                            <span class="maxproduct"><img src='../static/images/{{item1.image}}.jpg' alt="Drone picture" style="height: 190px;"></span>
+                            <span class="maxproduct"><img src="../static/images/{{item1.image}}.jpg" alt="LapTop alinware" style="height: 210px; width: 400px;"></span>
                         </div>
                         <div class="product-details">
                             <a href="#">
-                            <h1>Drone with cam</h1>
+                            <h1>{{item1.name}}</h1>
                             </a>
                             <span class="price">
-                            <span class="edd_price">${{item1.price}}</span>
+                            <span class="edd_price">${{item2.price}}</span>
                             </span>
                         </div>
                     </div>
@@ -176,16 +176,16 @@
                                 </p>
                                 <p>
                                     {% if request.session.user_id %}
-								        <a href="/cart/2" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+								        <a href="items/{{item2.id}}/add" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
 								    {% endif %}
                                     <a href="/items/2" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
                                 </p>
                             </div>
-                            <span class="maxproduct"><img src="../static/images/{{item2.image}}.jpg" alt="LapTop alinware"></span>
+                            <span class="maxproduct"><img src="../static/images/{{item2.image}}.jpg" alt="LapTop alinware" style="height: 210px; width: 400px;"></span>
                         </div>
                         <div class="product-details">
                             <a href="#">
-                            <h1>FastSell Labtop</h1>
+                            <h1>{{item2.name}}</h1>
                             </a>
                             <span class="price">
                             <span class="edd_price">${{item2.price}}</span>
@@ -204,16 +204,16 @@
                                 </p>
                                 <p>
                                     {% if request.session.user_id %}
-								        <a href="/cart/3" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+								        <a href="items/{{item3.id}}/add" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
 								    {% endif %}
                                     <a href="/items/3" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
                                 </p>
                             </div>
-                            <span class="maxproduct"><img src="../static/images/{{item3.image}}.jpg" alt="" style="height: 190px;"></span>
+                            <span class="maxproduct"><img src="../static/images/{{item3.image}}.jpg" alt="" style="height: 210px; width: 400px;"></span>
                         </div>
                         <div class="product-details">
                             <a href="#">
-                            <h1>FastSell Screen</h1>
+                            <h1>{{item3.name}}</h1>
                             </a>
                             <span class="price">
                             <span class="edd_price">${{item3.price}}</span>
@@ -253,21 +253,28 @@
                         </p>
                     </div>
                 </div>
-                <!-- /.col-md-4 col -->
                 <div class="col-md-4">
-                    <i class="fa fa-comments infoareaicon"></i>
-                    <div class="infoareawrap">
-                        <h1 class="text-center subtitle">Theme Support</h1>
-                        <p>
-                             Theme support issues prevent the theme from working as advertised in the demo. This is a free and guaranteed service offered through our support forum which is found in each theme.
-                        </p>
+                   
+                    <div class="infoareawrap" style="border: transparent;">
+                       
                         
                     </div>
                 </div>
                 <!-- /.col-md-4 col -->
                 <div class="col-md-4">
-                    
-                
+                    <i class="fa fa-comments infoareaicon"></i>
+                    <div class="infoareawrap">
+                        <h1 class="text-center subtitle">Radana's Support</h1>
+                        <p>
+                            You are  more than welcome to chat with our team, or ask for support,
+                            our support team is ready to answer your questions, and connect you with our IT Services.
+                        </p>
+                        
+                    </div>
+                </div>
+                <!-- /.col-md-4 col -->
+            
+                        
                 </div>
             </div>
         </div>
@@ -281,9 +288,8 @@
                 <div class="slide-text">
                     <div>
                         <h2><span class="uppercase">Awesome Support</span></h2>
-                        <img src="{% static 'images/DJI FPV Drone top.jpg' %}" alt="Awesome Support">
                         <p>
-                            I hope you feel enjoying  this store and we hope we stisfay you
+                            We hope that you are enjoying your time in Radana's store and that it satisfayed your ambition
                         </p>
                         
                     </div>
@@ -296,9 +302,6 @@
     <!-- CALL TO ACTION =============================-->
     <section class="content-block" style="background-color:#00bba7;">
     <div class="container text-center">
-        <div class="row">
-        
-        </div>
     </div>
     </section>
     
@@ -308,7 +311,7 @@
         <div class="container">
             <div class="row">
                 <p class="footernote">
-                     Connect with Radana		</p>
+                    Connect with Radana		</p>
                 <ul class="social-iconsfooter">
                     <li><a href="#"><i class="fa fa-phone"></i></a></li>
                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>

@@ -87,7 +87,7 @@ header .navbar-white {
 	font-family:Dosis;
 }
 .text-pageheader {
-	 text-align:center;
+	text-align:center;
 	color:#fff;
 	z-index:2;
 	position:relative;
@@ -307,7 +307,30 @@ img {
 	float:none;
 	line-height:1.7;
 }
-.slide-text {
+.categories{
+	display: flex;
+}
+.categories ul{
+	list-style: none;
+}
+.cat{
+	display: flex;
+}
+.cat_link{
+	text-decoration: none;
+	margin-left: 12px;
+	color: #444;
+	font-size: 18px;
+	font-weight: 800; 
+	line-height: 28px;
+	font-family: Roboto;
+    font-weight: 700;
+
+}
+.formcat{
+	margin-left: 50px;
+}
+.slide-text { 
 	position:relative;
 	color:#666;
 	overflow:hidden;

@@ -7,3 +7,4 @@ admin.site.register(User)
 admin.site.register(Item)
 admin.site.register(Order)
 admin.site.register(Cataegory)
+

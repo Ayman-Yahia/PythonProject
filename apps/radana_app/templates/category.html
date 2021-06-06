@@ -97,19 +97,11 @@
 	<div class="container toparea">
 		<div class="underlined-title">
 			<div class="editContent">
-				<h1 class="text-center latestitems">OUR PRODUCTS</h1>
+				<h1 class="text-center latestitems">{{name}}</h1>
 			</div>
-            <div class="categories">
-                <h4 class="latestitems">Categories:</h4>
-                    <ul class="cat">
-                        {% for cat in categories %}
-                        <li style="margin-top:5px"><a href="items/category/{{cat.id}}" class="cat_link" >{{cat.name}}</a></li>
-                        {% endfor %}
-                    </ul>
-            </div>  
 		</div>
 		<div class="row">
-			{% for item in items %}
+			{% for item in category %}
 			<div class="col-md-4">
 				<div class="productbox">
 					<div class="fadeshop">
@@ -120,13 +112,12 @@
 							</p>
 							<p>
 								{% if request.session.user_id %}
-                                   
 								    <a href="items/{{item.id}}/add" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
 								{% endif %}
 								<a href="/items/{{item.id}}" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 							</p>
 						</div>
-						<span class="maxproduct"><img src="../static/images/{{item.image}}.jpg" alt="" style="width: 400px; height: 200px;"></span>
+						<span class="maxproduct"><img src="/static/images/{{item.image}}.jpg" alt="" style="width: 400px; height: 200px;"></span>
 					</div>
 					<div class="product-details">
 						<a href="#">

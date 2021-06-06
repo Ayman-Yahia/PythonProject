@@ -26,34 +26,19 @@
                 <input type="password" id="login_password" name="login_password" required placeholder="Password" />
               </div>
               <input type="submit" value="Login" class="btn solid" />
-              <p class="social-text">Or Sign in with social platforms</p>
-              <div class="social-media">
-                <a href="#" class="social-icon">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-google"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-              </div>
             </form>
             <form action="register" class="sign-up-form" method="POST">
               {% csrf_token %}
               <h2 class="title">Sign up</h2>
-              <div class="input-field">
-                <i class="fas fa-user"></i>
-                {% if messages %}
-              <ul class="messages mt-4">
+              {% if messages %}
+              <ul class="messages mt-4 err">
                   {% for message in messages %}
-                  <li {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
+                  <li {% if message.tags %} class="{{ message.tags }} text-danger " {% endif %}>{{ message }}</li>
                   {% endfor %}
               </ul>
               {% endif %}
+              <div class="input-field">
+                <i class="fas fa-user"></i>
                 <input type="text" id="first_name" required name="first_name" placeholder="First Name" />
               </div>
               <div class="input-field">
@@ -73,21 +58,6 @@
                 <input type="password" id="confirm_password" name="confirm_password" required name="confirm_password" placeholder="Confirm Password" />
               </div>
               <input type="submit" class="btn" value="Sign up" />
-              <p class="social-text">Or Sign up with social platforms</p>
-              <div class="social-media">
-                <a href="#" class="social-icon">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-google"></i>
-                </a>
-                <a href="#" class="social-icon">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-              </div>
             </form>
           </div>
         </div>
