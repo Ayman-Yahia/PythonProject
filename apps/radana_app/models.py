@@ -37,6 +37,7 @@ class Cart(models.Model):
     user=models.ForeignKey(User,related_name='user_cart',on_delete=CASCADE)
     item=models.ForeignKey(Item,related_name='cart_item',default=1,on_delete=CASCADE)
     quantity=models.IntegerField(default=1)
+    
     deleted=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
